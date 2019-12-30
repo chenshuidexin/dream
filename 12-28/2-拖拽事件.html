@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vv/vue.js"></script>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #box{
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+<div id="app"> 
+    <div id="box" @mousedown="onoff && down($event)"></div>
+</div>
+<script>   
+new Vue({
+    el:'#app',
+    data:{
+        //操作所需要的数据
+        disX:0,
+        disY:0,
+        onoff:true
+    },
+    methods:{
+        //掺和着原生js
+        down(ev){
+            const {target,target:{offsetLeft,offsetTop},pageX,pageY}=ev;
+            this.disX=pageX-offsetLeft;
+            this.disY=pageY-offsetTop;
+            let that=this;
+            document.onmousemove=function(ev){
+                const {pageX,pageY}=ev;
+                target.style.left=pageX-that.disX+'px';
+                target.style.top=pageY-that.disY+'px';
+            },
+            document.onmouseup=function(ev){
+                document.onmouseup=document.onmousemove=null;
+            }
+        },
+        move(ev){
+            const {target,target:{offsetLeft,offsetTop},pageX,pageY}=ev;
+            target.style.left=pageX-this.disX+'px';
+            target.style.top=pageY-this.disY+'px';
+        },
+        up(){
+            //当鼠标抬起的时候解除事件
+            this.onoff =false
+        }
+    }
+})
+</script>
+</body>
+</html>

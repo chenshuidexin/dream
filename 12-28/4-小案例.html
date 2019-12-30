@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        全选中:<input type="radio" value="全选中" v-model="val">
+        已选中:<input type="radio" value="已选中" v-model="val">
+        未选中:<input type="radio" value="未选中" v-model="val">
+        <hr>
+        <h3>你现在的选择是{{val}}</h3>
+        <ul>
+            <!-- <li v-for="(val.key) in ary"></li> 原数据修改的话会返回不了了 -->
+            <li v-for="(val,key) in setAry">
+                <span>{{val.title}}:{{val.checked}}</span>
+            </li>
+        </ul>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+    new Vue({
+        el:"#app",
+        data:{
+            val:'全选中',
+            ary:[
+                {
+                    id:0,
+                    checked:true,
+                    title:'kkw'
+                },
+                {
+                    id:1,
+                    checked:true,
+                    title:'kkb'
+                },
+                {
+                    id:2,
+                    checked:false,
+                    title:'wwk'
+                },
+                {
+                    id:3,
+                    checked:false,
+                    title:'nihao'
+                }
+            ]
+        },
+        computed:{
+            //计算属性,可以提高性能
+            setAry(){
+                //默认是getter 读操作
+                const {val,ary}=this;
+                //条件判断
+                return ary.filter(item=>{
+                    switch(val){
+                        case "全选中":
+                            return item;
+                        case "已选中":
+                            return item.checked;
+                        case "未选中":
+                            return !item.checked;
+                        default:
+                            return item
+                    }
+                })
+            }
+        }
+    })
+    </script>
+</body>
+</html>

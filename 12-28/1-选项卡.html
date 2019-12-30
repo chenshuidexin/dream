@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .active {
+            background: yellow;
+        }
+
+        #box div {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #000;
+            _display: none;
+        }
+
+        #box div.show {
+            display: block;
+        }
+    </style>
+    <script src="./vv/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="fn(key)" v-for="(val,key) in btns">
+            {{val}}
+        </button>
+        <div class="show" v-for="(val,key) in content" v-show="block === key">
+            {{val}}
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#box',
+            data: {
+                block: 0,
+                content: [111111, 222222, 333333],
+                btns: ['选择一', '选择二', '选择三'],
+            },
+            methods: {
+                fn(num) {
+                    this.block = num;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

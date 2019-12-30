@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vv/vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="app">
+        <h1>{{message}}</h1>
+        <p class="test1">{{methodTest}}</p>
+        <p class="test2-1">{{methodTest()}}</p>
+        <p class="test2-2">{{methodTest()}}</p>
+        <p class="test2-3">{{methodTest()}}</p>
+        <p class="test3-1">{{computedTest}}</p>
+        <p class="test3-2">{{computedTest}}</p>
+    </div>
+    <script>
+
+        //属性操作不需要括号,用于逻辑计算比较大且复杂的情况，不用重新操作，提高性能。
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                message: '我是消息，'
+            },
+            methods: {
+                methodTest() {
+                    return this.message + '现在我用的是methods'
+                }
+            },
+            computed: {
+                computedTest() {
+                    return this.message + '现在我用的是computed'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

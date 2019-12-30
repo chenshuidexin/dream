@@ -50,15 +50,16 @@ new Vue({
                 document.onmouseup=document.onmousemove=null;
             }
         },
-        move(ev){
-            const {target,target:{offsetLeft,offsetTop},pageX,pageY}=ev;
-            target.style.left=pageX-this.disX+'px';
-            target.style.top=pageY-this.disY+'px';
-        },
-        up(){
-            //当鼠标抬起的时候解除事件
-            this.onoff =false
-        }
+        //以后还要继续学习
+        // move(ev){
+        //     const {target,target:{offsetLeft,offsetTop},pageX,pageY}=ev;
+        //     target.style.left=pageX-this.disX+'px';
+        //     target.style.top=pageY-this.disY+'px';
+        // },
+        // up(){
+        //     //当鼠标抬起的时候解除事件
+        //     this.onoff =false
+        // }
     }
 })
 </script>

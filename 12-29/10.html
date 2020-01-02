@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="checkbox" /> 定义复选框。复选框允许用户在一定数目的选择中选取一个或多个选项。 -->
+        <!-- v-model   v-bind -->
+        <input type="checkbox" v-bind:checked="onecheck">阳光
+        <br>
+        <input type="checkbox" v-model="onecheeckbox">世界
+        <br>
+        <input type="checkbox" value="山楂" v-model="checks">山楂
+        <input type="checkbox" value="山竹" v-model="checks">山竹
+        <input type="checkbox" value="橙子" v-model="checks">橙子
+        现在选择:{{checks}}
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                onecheck: true,
+                onecheeckbox: true,
+                checks: []
+            }
+        })
+        /*
+        单个复选框，直接绑定一个布尔值，可以用 v-­model 或 v-­bind。
+        多个复选框
+       （1）若组合使用，需要 v­-model 配合 value 使用，v­-model 绑定一个数组；
+        （2）若绑定的是字符串，则会转化为 true 和 false，与所有绑定的复选框的 checked 属性相对应。
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <!-- label标签当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上   for 属性应当与相关元素的 id 属性相同 -->
+        <label for="checkbox">{{checked}}</label>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+    new Vue({
+        el:'#app',
+        data:{
+            checked:false
+            // 只能放布尔值
+        }
+    })
+    </script>
+</body>
+</html>

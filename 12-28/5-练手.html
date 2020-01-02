@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,25 @@
     <title>Document</title>
     <script src="./vv/vue.js"></script>
 </head>
+<div id="app">
+    <div :class="classObject"></div>
+</div>
+
 <body>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                classObject:{
+                    active:true,
+                    'text-danger':false
+                }
+            },
+            methods:{
     
+            }
+        })
+    </script>
 </body>
+
 </html>

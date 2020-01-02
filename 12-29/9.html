@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- type="radio" 单选按钮 -->
+        <input type="radio"  value="猫" v-model="checkname">猫
+        <input type="radio"  value="狗" v-model="checkname">狗
+        <input type="radio"  value="鼠" v-model="checkname">鼠
+        <span>选中的:{{checkname}}</span>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+        /*
+        若多个单选框组合使用（用相同 name 实现多个单选框互斥），就需要 v­-model 来配合 value 使用，绑定选中的单选框的 value 值，此处所绑定的初始值可以随意设置。
+        */
+    new Vue({
+        el:"#app",
+        data:{
+            checkname:'鼠'
+        }
+    })
+    </script>
+</body>
+</html>

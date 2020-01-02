@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="val" @keyup.13='click'>
+        <ul>
+            <li v-for="(val,key) in ary" @click='rm(key)'>{{val}}</li>
+        </ul>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+    new Vue({
+        el:'#app',
+        data:{
+            val:'',
+            ary:[]
+        },
+        methods: {
+            click(){
+                this.ary.push(this.val);
+                this.val='';
+            },
+            rm(key){
+                //遇到相同的内容靠索引值来排除
+                this.ary=this.ary.filter((ele,i)=>i!==key)
+            }
+        },
+    })
+    </script>
+</body>
+</html>

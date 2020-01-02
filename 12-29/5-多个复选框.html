@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" value="kkw" v-model="checkname">
+        <label for="kkw">kkw</label>
+        <input type="checkbox" value="kb" v-model="checkname">
+        <label for="kb">kb</label>
+        <input type="checkbox" value="kbb" v-model="checkname">
+        <label for="kbb">kbb</label>
+        <br>
+        <span>选择:{{checkname}}</span>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+        //根据你选择的顺序进行添加
+        new Vue({
+            el:"#app",
+            data:{
+                checkname:[]
+            }
+        })
+    </script>
+</body>
+</html>

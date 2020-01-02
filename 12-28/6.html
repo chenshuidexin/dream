@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{num}}
+        <pp></pp>
+       <btn :aa="num"></btn>
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+
+    const btn={
+        template:`<button @click="click">按钮{{aa}}</button>`,
+        props:['aa'],
+        data(){
+            return {
+                num:0
+            }
+        },
+        methods:{
+            click(){
+                this.num++;
+            }
+        }
+    }
+    const pp={
+        template:`<div>你好世界!</div>`
+    }
+    // Vue.component('pp',pp)
+    // Vue.component('btn',btn)
+    new Vue({
+        el:"#app",
+        data:{
+            num:5
+        },
+        components:{
+            pp,
+            btn
+        }
+
+    })
+    </script>
+</body>
+</html>

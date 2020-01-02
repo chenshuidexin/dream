@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select v-model="selected">
+        <option value="猫咪">猫咪</option>
+        <option value="二哈">二哈</option>
+        <option value="快乐">快乐</option>
+        </select>
+        选择是:{{selected}}
+        <br><br><br><br>
+        <!-- 多选下拉框（按ctrl键点击） -->
+        <select v-model="selectedmul" multiple>
+            <option value="猫咪">猫咪</option>
+            <option value="二哈">二哈</option>
+            <option value="快乐">快乐</option>
+        </select>
+        现在选择:{{selectedmull}}
+    </div>
+    <script src="./vv/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                seleted:'',
+                selectedmul:[]
+            }
+        })
+        /*
+        如果是单选，初始化最好给定字符串，因为 v-­model 此时绑定的是静态字符串或者布尔值。
+        如果是多选，初始化最好给定一个数组。
+        */
+    </script>
+</body>
+</html>

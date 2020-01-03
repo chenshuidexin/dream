@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父组件在呢</h1>
+        <button @click="++num">父按钮{{num}}</button>
+        <hr>
+        <!-- 子组件的天下 -->
+        <!-- :nn="父组件的数据"  在子组件上引用名字nn -->
+        <tempb 
+            :yourname="name"
+            :nn="num"
+        ></tempb>
+    </div>
+    <!-- 可爱的我                   分割线来了 -->
+    <!-- 可以在外面创建模板 -->
+    <template id="tempb">
+        <div>
+            <h2>子组件</h2>
+            <button>子按钮{{nn}}</button>
+            <!-- <h3>名字:{{yourname}}</h3> -->
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        //定义组件
+        const tempb={
+            template:'#tempb',
+            //props使用对象
+            props:{
+                nn:{
+                    //如果不是指定数据类型的就会报错，可以去源头去查看是否是输入错误。
+                    type:Number,
+                    //默认值
+                    dafault:0
+                },
+                yourname:{
+                    //必填项目
+                    required:true,
+                    //自定义验证函数=>验证信息,不是中文会报错
+                    validator:function(value){
+                        return /[\u4e00-\u9fa5]+/.test(value)
+                    }
+                }
+            }
+        }
+    new Vue({
+        el:'#app',
+        data:{
+            num:0,
+            name:"水滴"
+        },
+        components:{//局部注册
+            tempb
+        }
+    })
+    </script>
+</body>
+</html>

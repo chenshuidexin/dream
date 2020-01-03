@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{date|formatDate}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        /*
+        Vue.js支持在{{}}插值的尾部添加一个管道符"|"来对数据进行过滤，曾经用于格式化文本，比如字母全部大写，货币千位使用逗号分割等。过滤的规则是自定义的，通过给Vue实例添加filters来实现[局部过滤]
+
+        过滤器可以串联，而且可以接收参数
+        串联
+        {{ message | filterA | filterB }}
+
+        接收参数
+        {{ message | filter('arg1', 'arg2') }}
+        
+        这里的 arg1 和 arg2 将分别传给过滤器的第二个 和 第三个参数，因为第一个是数据本身。
+        */
+    new Vue({
+        el:'#app',
+        data:{
+            date:new Date()
+        },
+        mounted() {//实例挂载初始化定时器
+            this.timer=setInterval(()=>this.date=new Date(),1000)
+        },
+        beforeDestroy() {//实例销毁时，关闭定时器
+            if(this.timer) clearInterval(this.timer)
+        },
+        filters:{//定义过滤器
+        formatDate(val){//val需要进行过滤的数据，管道符前面的数据
+        const date=new Date(val)
+        const year=date.getFullYear()
+        const month=(date.getMonth()+1).toString().padStart(2,0)
+        const day=(date.getDate()).toString().padStart(2,0)        
+        const hours=(date.getHours()).toString().padStart(2,0)        
+        const min=(date.getMinutes()).toString().padStart(2,0)        
+        const sec=(date.getSeconds()).toString().padStart(2,0)    
+        return `${year}-${month}-${day} ${hours}:${min}:${sec}`    
+        }
+        }
+    })
+
+    /*
+    ES6 引入了字符串补全长度的功能，如果某个字符串不够指定长度，会在头部活尾部补全。
+    padStart() 用于头部补全；
+    padEnd() 用于尾部补全。
+    */
+    </script>
+</body>
+</html>

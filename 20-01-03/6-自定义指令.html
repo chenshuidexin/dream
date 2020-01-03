@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-color="'green'">{{val}}</div>
+        <input type="text" v-focus value="1111">
+        <hr>
+        <aaa></aaa>
+    </div>
+    <template id="aaa">
+        <div v-size="60">123456</div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        //全部注册自定义指令
+    Vue.directive('color',function(el,val){
+        el.style.color=val.value?val.value:'red'
+    });
+        Vue.directive('focus',{
+            inserted(el){
+                el.select()
+            }
+        })
+        new Vue({
+            el:'#app',
+            data:{
+                val:'学好vue就很好'
+            },
+            components:{
+                aaa:{
+                    template:"#aaa",
+                    //局部注册自定义指令
+                    directives:{
+                        size(el,val){
+                            el.style.fontSize=val.value?val.value+'px':"12px"
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父组件在此</h1>
+        <button @click="changefn">父组件按钮{{num}}</button>
+        <hr>
+        <tempb 
+        :mm="num"
+        @clickto="fromChild"
+        ></tempb>
+    </div>
+
+
+
+    <template id="tempb">
+        <div>
+            <h2>子组件</h2>
+            <button 
+            @click="add"
+            >子按钮{{cnum}}</button>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+
+        const tempb={
+            template:"#tempb",
+            props:['mm'],
+            data(){
+                return{
+                    cnum:this.mm
+                }
+            },
+            methods:{
+                add(){
+                    this.cnum+=2;
+                    this.$emit('childto',this.cnum)
+                    // 触发当前实例上的事件。附加参数都会传给监听器回调
+                }
+            }
+        }
+    new Vue({
+        el:'#app',
+        data:{
+            num:0
+        },
+        methods: {
+            changefn(){
+                this.num++;
+            },
+            fromChild(val){
+                this.num=val;
+            }
+        },
+        components:{
+            tempb
+        }
+    })
+    </script>
+</body>
+</html>

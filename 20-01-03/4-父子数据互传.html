@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>父组件在此</h2>
+        <button @click="changefn">父组件{{num}}</button>
+        <hr>
+        <!-- 子组件来了       可爱的我又来分割了 -->
+        <tempb
+            :nn="num"
+            @child="changefn"
+        ></tempb>
+    </div>
+
+
+    <template id="tempb">
+        <div>
+            <h3>子组件</h3>
+            <button 
+            @click="add"
+            >
+                子按钮{{nn}}
+            </button>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        //定义组件
+        const tempb={
+            template:"#tempb",
+            props:['nn'],//接收父组件的数据
+            methods:{
+                add(){
+                    this.$emit('child');
+                }
+            }
+        }
+    new Vue({
+        el:"#app",
+        data:{
+            num:0
+        },
+        methods: {
+            changefn(){
+                this.num++;
+            }
+        },
+        components:{
+            //局部组件
+            tempb
+        }
+    })
+    </script>
+</body>
+</html>

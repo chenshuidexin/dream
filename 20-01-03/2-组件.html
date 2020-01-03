@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <pap></pap>
+        <!-- <ppa></ppa> -->
+        <tempb></tempb>
+    </div>
+    <!-- 可以不在app里面 -->
+    <template id="tempb">
+        <div>我是另一种模板写法{{num}}</div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        //在new Vue的上面
+        const ppa={
+            template:`<h3>第一种写法模板:第一个子组件</h3>`
+        }
+        const pap={
+            //顺序跟模板字符串的排列顺序相同
+            template:`<div>
+            <ppa></ppa>
+            <h1>第一种写法模板:第二个子组件</h1>
+            </div>`,
+            //局部注册只能在局部组件中使用，优先级别更高
+            components:{
+                // ppa
+            }
+        }
+        //另一种模板写法
+        const tempb={
+            template:"#tempb",
+            //操作的数据
+            data(){
+                return{
+                    num:10
+                }
+            }
+        }
+        //全局注册在哪儿都能使用，优先级别更低
+        Vue.component('tempb',tempb);
+        Vue.component('pap',pap);
+        // Vue.component('ppa',ppa);
+    new Vue({
+        el:"#app"
+
+    })
+    </script>
+</body>
+</html>

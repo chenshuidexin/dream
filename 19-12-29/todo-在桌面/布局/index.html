@@ -15,26 +15,53 @@
                 <input 
                     class="new-todo" 
                     placeholder="请输入内容" 
+                    v-model.trim="val"
+                    @keyup.13="add"
                 >
             </header>
             <section class="main">
-                <input class="toggle-all" type="checkbox" >
+                <input 
+                class="toggle-all" 
+                type="checkbox" 
+                :check="all"
+                @click="changeAll"
+                >
                 <ul class="todo-list">
-                    <li class="active">
+                    <li
+                     :class="{
+                         completed:val.checked,
+                         editing:val.onoff
+                     }"
+                     v-for="(val,key) in hashAry"
+                     :key="val.id"
+                     >
                         <div class="view">
-                            <input class="toggle" type="checkbox" >
-                            <label>哈哈哈</label>
-                            <button class="destroy"></button>
+                            <input class="toggle" type="checkbox" 
+                            v-model="val.checked"
+                            >
+                            <label
+                            @dblclick="replace(val,key)"
+                            >{{val.txt}}</label
+                                >
+                            <button 
+                            class="destroy"
+                            @click="rm(val.id)"
+                            ></button>
                         </div>
                         <input 
-                            class="edit" 
+                            class="edit"
+                            ref="edit"
+                            :value="val.txt"
+                            @blur="off(val,$event)"
+                            @keyup.esc="onoff_FN(val.id,false)" 
                         />
-                    </li>
+                    </li
+                    >
                 </ul>
             </section>
-            <footer class="footer">
+            <footer class="footer" v-show="ary.length">
 	            <span class="todo-count">
-	            	<strong>0</strong>
+	            	<strong>{{ary|unchecked}}</strong>
 	            	<span>条未选中</span>
                 </span>
                 <ul 
@@ -43,7 +70,9 @@
                     <li>
                         <a 
                             href="#/all" 
-                            class="selected"
+                            :class="{
+                                selected:hash === '#/all'
+                            }"
                            
                         >全部</a>
                     </li>
@@ -51,49 +80,24 @@
                         <a 
                             href="#/unchecked" 
                             
-                            class=""
+                            :class="{
+                                selected:hash === '#/unchecked'
+                            }"
                         >未选中</a>
                     </li>
                     <li>
                         <a 
                             href="#/checked"
-                            class=""
+                            :class="{
+                                selected:hash === '#/checked'
+                            }"
                         >已选中</a>
                     </li>
                 </ul>
             </footer>
         </div>
     </section>
-<script src="../../vue.js"></script>
-<script>
-    // editing completed
-    // editing ''
-    // ''
-    //completed
- 
-    new Vue({
-        el:'.todoapp',
-        data:{ 
-            ary:[
-                {
-                    id:0,
-                    txt:'哈哈',
-                    checked:true,
-                    onoff:false
-                },
-                {
-                    id:1,
-                    txt:'呵呵',
-                    checked:false,
-                    onoff:false
-                }
-            ]
-        },
-        methods:{
-
-        }
-            
-    })
-</script>
+<script src="vue.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

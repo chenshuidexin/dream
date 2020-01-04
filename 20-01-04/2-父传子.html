@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>父组件</h2>
+        <button @click="num++">父组件{{num}}</button>
+        <hr>
+        <son  :aa="num"></son>
+        </div>
+        <!-- 模板只需要添加内容，没有属性 -->
+    <template id="son"> 
+        <div>
+            <h5>子组件</h5>
+            <button>子组件{{aa}}</button>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        //全局注册组件
+        Vue.component('son',{
+            //数组接收父组件数据
+            props:['aa'],
+            template:"#son"
+        })
+    new Vue({
+        el:'#app',
+        data:{
+            num:0
+        }
+    })
+    </script>
+</body>
+</html>

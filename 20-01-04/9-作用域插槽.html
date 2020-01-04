@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ppa :data="ary">
+            <!-- v-slot 简写为 # -->
+            <!-- 自定义名字 -->
+            <template #cdata="child">
+                <!-- {{child}} -->
+                <h1>名字:{{child.n}}</h1>
+                <h3>年龄:{{child.age}}</h3>
+                <h3>编号:{{child.id}}</h3>
+            </template>
+        </ppa>
+    </div>
+    <template id="ppa">
+        <div>
+            <ul>
+                <!-- slot  里的name -->
+                <li v-for="(val,key) in data">
+                    <slot
+                    name="cdata"
+                    :n="val.name"
+                    :age="val.age"
+                    :id="val.id"
+                    >{{val.name}}</slot
+
+                        >
+                </li>
+            </ul>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+   /*
+   作用域插槽:
+   在子级的slot中
+     1.定义一个name="唯一标识符"
+     2.通过v-bind[缩写为:]去传入使用的数据
+    在父级template中
+     1.v-slot:name标识符 = "自定义的名字"
+          v-slot缩写为#
+     2.使用自定义的名字  .xx
+
+        <slot name="cc"  :age="val.age">
+        <template #cdata='data'>
+            {{data.age}}
+        </template>
+   */
+    const ppa={
+        template:'#ppa',
+        // 引用父组件的数据
+        props:['data']
+    }
+    new Vue({
+        el:'#app',
+        data:{
+            ary:[
+                {
+                    name:'kkw',
+                    age:20,
+                    id:0
+                },                
+                {
+                    name:'kkb',
+                    age:24,
+                    id:1
+                },
+                {
+                    name:'kkk',
+                    age:13,
+                    id:3
+                },
+            ]
+        },
+        //局部组件注册
+        components:{
+            ppa
+        }
+    })
+    </script>
+</body>
+</html>

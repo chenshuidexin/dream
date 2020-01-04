@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        width: 100px;
+        height: 100px;
+        background: skyblue;
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ppa>
+            <!-- 有当前样式就显示当前样式，没有走slot里面的样式 -->
+            <!-- <div class="box2">box2</div> -->
+            <h3>ttt</h3>
+            <!-- 显示插槽的内容 -->
+        </ppa>
+    </div>
+    <template id="ppa">
+        <div>
+            <!-- <slot> -->
+                <!-- <div class="box">box</div> -->
+            <!-- </slot> -->
+            <slot></slot>  <p>haha<slot></slot></p>
+            <!-- 页面显示插槽的位置和个数 -->
+            <!-- 默认装置 -->
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+    /*
+    在开发中写什么结构就是什么结构，优点就是固定统一,缺点是不够灵活。
+    插槽的出现就是为了解决不灵活的问题,能够自定义一些组件，能够替换之前默认的配置
+
+    匿名插槽:
+      子组件定义slot
+      父组件中给调用的子组件双标签内填入结构，这个时候slot就被填入结构覆盖
+    */
+   const ppa = {
+       template:"#ppa"
+   }
+   new Vue({
+       el:'#app',
+       components:{
+           ppa
+       }
+   })
+    </script>
+</body>
+</html>

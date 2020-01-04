@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ppa>
+            <div slot="three">你拍三我拍三</div>
+            <div slot="one">你拍一我拍一</div>
+            <div slot="tow">你拍二我拍二</div>
+            <!-- <div slot="three">你拍三我拍三</div> -->
+        </ppa>
+    </div>
+    <template id="ppa">
+        <div>
+            <!-- 页面所显示内容的顺序跟此处的位置有关系 -->
+            <slot name="one">
+                <div class="one">第一</div>
+            </slot>
+            <slot name="tow">
+                <!-- <div class="tow">第二</div> -->
+            </slot>            
+            <slot name="three">
+                <!-- <div class="three">第三</div> -->
+            </slot>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+    /*
+    具名插槽:在slot标签中设置一个name属性，值为随意名字
+
+    在插入替换内容的时候，在替换标签中定义一个slot的属性值[class]和替换的name一一对应关系
+    */
+   const ppa={
+       template:"#ppa"
+   }
+   new Vue({
+       el:'#app',
+       components:{
+           ppa
+       }
+   })
+    </script>
+</body>
+</html>

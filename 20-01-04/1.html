@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        父组件
+        <hr>
+        <tempb></tempb>
+    </div>
+    <template id="tempb">
+        <div>我是子组件{{num}}</div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('tempb',{
+            template:'#tempb',
+            data(){
+                return {//return返回的是对象
+                    num:10
+                }
+            }
+        })
+        // const tempb={
+        //     template:'#tempb'
+        // }
+        // Vue.component('tempb',tempb)
+    new Vue({
+        el:"#app",
+        
+    })
+    </script>
+</body>
+</html>

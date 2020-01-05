@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html, body {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+
+      font-family: sans-serif;
+    }
+
+    .offline {
+      background: #DDD;
+    }
+
+    .online {
+      background: #6C4;
+    }
+    .executing {
+      background: #F99;
+    }
+
+    #banner {
+      padding: 5px 10px;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin:-5px 0
+    }
+
+    li {
+        height: 30px;
+        width: 80px;
+      margin: 5px 0;
+      border: 1px solid #000;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    .offline .btn-debug {
+      display: none;
+    }
+
+    .btn-debug {
+      box-shadow:inset 0px 1px 0px 0px #ffffff;
+      background:linear-gradient( center top, #ffffff 5%, #f6f6f6 100% );
+      background-color:#ffffff;
+      border-radius:6px;
+      border:1px solid #dcdcdc;
+      display:block;
+      color:#666666;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 24px;
+      text-decoration:none;
+      text-shadow:1px 1px 0px #ffffff;
+    }
+/* 鼠标移动变色 */
+    .btn-debug:hover {
+      background:linear-gradient( center top, #f6f6f6 5%, #ffffff 100% );
+      background-color:#f6f6f6;
+    }
+    </style>
+</head>
+<body>
+    <div id="banner" class="offline">
+        <a href="#" onclick="window.open('xxx')" class="btn-debug">食品监测</a>
+        <h1 id="title" style="text-align:center">哈哈哒</h1>
+      </div>
+    
+      <ul id="browsers">
+          <li class="btn-debug">11111</li>
+          <li class="btn-debug">22222</li>
+          <li class="btn-debug">33333</li>
+          <li class="btn-debug">4444</li>
+          <li class="btn-debug">5555</li>
+      </ul>
+
+    
+</body>
+</html>

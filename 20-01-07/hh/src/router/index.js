@@ -14,10 +14,11 @@ const routes = [
   {
     path: '/b1',
     component: () => import('../components/b1.vue'),
+    // beforEnter作用在路由里
     beforeEnter: (to, from, next) => {
       if(from.fullPath === '/b2' && to.fullPath === '/b1'){
         //局部的优先级次于全局的优先级
-        alert('ggg')
+        alert('我拦不住啊')
         next('/')
       }else{
         next()
@@ -35,6 +36,10 @@ const routes = [
   {
     path:'*',
     component:()=>import('../views/404.vue')
+  },
+  {
+    path:'/login',
+    component:()=>import("../components/login.vue")
   }
 ]
 
@@ -45,7 +50,7 @@ const router = new VueRouter({
 
 
 
-
+// 全局切换路由就会触发，优先级较高
 // router.beforeEach((to,from,next)=>{
 //   if(from.fullPath === '/b2' && to.fullPath === '/b1'){
 //     next('/foo')

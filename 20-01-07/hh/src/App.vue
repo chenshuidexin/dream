@@ -1,8 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      app页面<br>
+      <!-- 挂载数据(替代app)，总页面使用，但不建议使用  在每个页面上分别加上link即可-->
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
+      <router-link to="/b1">BB1</router-link>|
+      <router-link to="/b2">BB2</router-link>|
+      <router-link to="/foo/1">foo1</router-link>|
+      <router-link to="/foo/2">foo2</router-link>
     </div>
     <router-view/>
   </div>

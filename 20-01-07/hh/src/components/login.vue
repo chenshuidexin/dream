@@ -33,7 +33,7 @@
                         pass:'666'
                     }
                 ];
-                const {uname,pass}=this
+                const {uname,pass}=this;
                 setTimeout(()=>{
                     if(ary.some(item=>item.un === uname && item.pass === pass)){
                         localStorage.setItem('login',uname);

@@ -1,11 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store/index'
-/*
-可以直接引用并操作，但是为了更好的管理文件，最好是引用文件即可。
+import store from './store'
 
-*/ 
 Vue.config.productionTip = false
 
 new Vue({

@@ -2,34 +2,38 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-const config={
-  //定义状态
-  states:{
-    islogin:false
+const store = new Vuex.Store({
+  //存储数据
+  state:{
+    num:0
   },
-  //getters 二次操作
-  getters:{
-    // islogin:(state)=>{
-    //   return state.islogin;
-    // },
-    //另一种写法
-    islogin:state=>state.islogin
-  },
-  //修改state里面的变量
+  //放同步函数事件
   mutations:{
-    //status指上面的status，payload是调用mutation时传过来的参数
-    updateLogin(state,payload){
-      state.islogin=payload;
+    increment(state){
+      state.num++
     }
   },
-  //action行为 配合mutation函数
-  actions:{
-
+  getters:{
+    toDou(state){
+      return state.num<10?'0'+state.num:''+state.num
+    }
   },
-  //modules行为 模块化行为
-  modules:{
-
+  //放异步函数事件
+  actions:{
+    // 第一种写法
+    // asyncIcrement(context){
+    //   setTimeout(() => {
+    //     context.commit('increment')
+    //   }, 2000);
+    // }
+    // 第二种写法 对象解构
+    asyncIcrement({commit}){
+      setTimeout(() => {
+        commit('increment')
+      }, 2000);
+    }
   }
-}
-
-export default new Vuex.Store(config)
+  
+});
+//导出
+export default store;

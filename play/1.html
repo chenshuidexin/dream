@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父组件</h1>
+        <button @click='changefu'>父{{num}}</button>
+        <br>
+        <son @son="changefu" :cnum="num"></son>
+    </div>
+    <template id="son">
+        <div>
+            <h4>子组件</h4>
+            <button @click='add'>子{{cnum}}</button>
+        </div>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component('son',{
+            template:'#son',
+            props:['cnum'],
+            methods:{
+                add(){
+                    this.$emit('son')
+                }
+            }
+        })
+    new Vue({
+        el:'#app',
+        data:{
+            num:0
+        },
+        methods:{
+            changefu(){
+                this.num++;
+            }
+        }
+    })
+    </script>
+</body>
+</html>

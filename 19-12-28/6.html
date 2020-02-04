@@ -16,15 +16,15 @@
     <script>
 
     const btn={
-        template:`<button @click="click">按钮{{aa}}</button>`,
+        template:`<button @click="add">按钮{{aa}}</button>`,
         props:['aa'],
         data(){
             return {
-                num:0
+                // num:0
             }
         },
         methods:{
-            click(){
+            add(){
                 this.num++;
             }
         }
